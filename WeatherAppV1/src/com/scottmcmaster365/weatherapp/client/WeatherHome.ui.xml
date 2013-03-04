@@ -1,0 +1,47 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+		.weatherTable {
+			padding: 5px;	
+		}
+		.error {
+			color: red;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		<div align="right" width="100%">
+			<g:TextBox ui:field="userName" /><g:Button ui:field="login">Sign in</g:Button>
+		</div>
+		<div align="right" width="100%">
+			<g:Label ui:field="unknownUser" visible="false" styleName="{style.error}">Unknown user</g:Label>
+		</div>
+		<h1>World Weather</h1>
+		<table>
+		<tr>
+		<td><span>Search for a country:</span></td>
+		<td><g:TextBox ui:field="country" /></td>
+		<td><g:Button styleName="{style.important}" ui:field="loadCities">Find cities</g:Button></td>
+		</tr>
+		
+		<g:Label ui:field="noCities" visible="false" styleName="{style.important}">No cities found</g:Label>
+		<tr ui:field="cityRow">
+		<td><span>Select a city:</span></td>
+		<td><g:ListBox ui:field="city" visibleItemCount="1" /></td>
+		<td><g:Button styleName="{style.important}" ui:field="loadWeather">Get weather</g:Button></td>
+		</tr>
+		</table>
+		
+		<table ui:field="weatherTable" border="1" class="{style.weatherTable}">
+		<tr><td>City</td><td><g:Label ui:field="cityName" /></td></tr>
+		<tr><td>Temperature</td><td><g:Label ui:field="temperature" /></td></tr>
+		<tr><td>Wind</td><td><g:Label ui:field="wind" /></td></tr>
+		<tr><td>Visibility</td><td><g:Label ui:field="visibility" /></td></tr>
+		<tr><td>Pressure</td><td><g:Label ui:field="pressure" /></td></tr>
+		<tr><td>Humidity</td><td><g:Label ui:field="humidity" /></td></tr>
+		</table>
+	</g:HTMLPanel>
+</ui:UiBinder> 
