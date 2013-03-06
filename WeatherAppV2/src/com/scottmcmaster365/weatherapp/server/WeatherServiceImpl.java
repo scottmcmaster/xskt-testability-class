@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.scottmcmaster365.weatherapp.client.WeatherService;
+import com.scottmcmaster365.weatherapp.shared.City;
 import com.scottmcmaster365.weatherapp.shared.Weather;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.inject.Inject;
@@ -18,10 +19,13 @@ public class WeatherServiceImpl extends RemoteServiceServlet implements
 		WeatherService {
 
 	private final GlobalWeatherService service;
+	private final UserDatabase userDatabase;
 	
 	@Inject
-	public WeatherServiceImpl(GlobalWeatherService service) {
+	public WeatherServiceImpl(GlobalWeatherService service,
+			UserDatabase userDatabase) {
 		this.service = service;
+		this.userDatabase = userDatabase;
 	}
 	
 	public List<String> getCitiesForCountry(String countryName) {
@@ -46,11 +50,9 @@ public class WeatherServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public Weather getWeatherForUser(String userName) {
-		// TODO: Replace with a real user database.
-		if ("scott".equals(userName.toLowerCase())) {
-			return getWeather("china", "beijing");
-		} else if ("marissa".equals(userName.toLowerCase())) {
-			return getWeather("united states", "seattle");
+		City city = userDatabase.loadCityForUser(userName);
+		if (city != null) {
+			return getWeather(city.getCountryName(), city.getCityName());
 		}
 		return null;
 	}

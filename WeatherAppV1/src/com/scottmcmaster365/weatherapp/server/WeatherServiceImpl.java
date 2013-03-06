@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.scottmcmaster365.weatherapp.client.WeatherService;
+import com.scottmcmaster365.weatherapp.shared.City;
 import com.scottmcmaster365.weatherapp.shared.Weather;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
@@ -38,11 +39,9 @@ public class WeatherServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public Weather getWeatherForUser(String userName) {
-		// TODO: Replace with a real user database.
-		if ("scott".equals(userName.toLowerCase())) {
-			return getWeather("china", "beijing");
-		} else if ("marissa".equals(userName.toLowerCase())) {
-			return getWeather("united states", "seattle");
+		City userCity = UserDatabase.loadCityForUser(userName);
+		if (userCity != null) {
+			return getWeather(userCity.getCountryName(), userCity.getCityName());
 		}
 		return null;
 	}

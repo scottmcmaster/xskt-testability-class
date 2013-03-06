@@ -18,7 +18,7 @@ public class WeatherServiceImplTest {
 	@Before
 	public void setUp() {
 		globalWeatherService = EasyMock.createMock(GlobalWeatherService.class);
-		weatherService = new WeatherServiceImpl(globalWeatherService);
+		weatherService = new WeatherServiceImpl(globalWeatherService, new FakeUserDatabase());
 	}
 	
 	@Test
