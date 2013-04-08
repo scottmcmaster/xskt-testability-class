@@ -2,6 +2,7 @@ package com.scottmcmaster365.weatherapp.server;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -37,6 +38,20 @@ public class WeatherServiceImplTest {
 	}
 
 	@Test
+	public void testGetCitiesForCountry_exception() throws Exception {
+		EasyMock.expect(globalWeatherService.getCitiesForCountry("china"))
+			.andThrow(new IOException());
+		EasyMock.replay(globalWeatherService);
+		try {
+			weatherService.getCitiesForCountry("china");
+		} catch (WeatherServiceException e) {
+			assertTrue(e.getCause() instanceof IOException);
+			return;
+		}
+		fail("Didn't find expected exception");
+	}
+
+	@Test
 	public void testGetCitiesForCountry_null() {
 		EasyMock.replay(globalWeatherService);
 		assertTrue(weatherService.getCitiesForCountry(null).isEmpty());
@@ -60,6 +75,22 @@ public class WeatherServiceImplTest {
 		Weather foundWeather = weatherService.getWeatherForUser("scott");
 		assertEquals("beijing", foundWeather.getCityName());
 		EasyMock.verify(globalWeatherService);
+	}
+	
+	@Test
+	public void testGetWeatherForUser_exception() throws Exception {
+		Weather weather = new Weather();
+		weather.setCityName("beijing");
+		EasyMock.expect(globalWeatherService.getWeatherForCity("china", "beijing"))
+			.andThrow(new IOException());
+		EasyMock.replay(globalWeatherService);
+		try {
+			weatherService.getWeatherForUser("scott");
+		} catch (WeatherServiceException e) {
+			assertTrue(e.getCause() instanceof IOException);
+			return;
+		}
+		fail("Didn't find expected exception");
 	}
 	
 	@Test

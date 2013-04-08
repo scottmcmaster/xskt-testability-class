@@ -23,7 +23,7 @@ public class WeatherServiceImpl extends RemoteServiceServlet implements
 			}
 			return service.getCitiesForCountry(countryName);
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new WeatherServiceException(e);
 		}
 	}
 
@@ -33,7 +33,7 @@ public class WeatherServiceImpl extends RemoteServiceServlet implements
 		try {
 			return service.getWeatherForCity(countryName, cityName);
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new WeatherServiceException(e);
 		}
 	}
 
