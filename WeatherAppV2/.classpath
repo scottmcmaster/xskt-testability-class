@@ -24,5 +24,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/WebDriver"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/EasyMock"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hsqldb"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/MySqlJdbc"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

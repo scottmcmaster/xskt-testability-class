@@ -12,7 +12,7 @@
 			color: red;
 		}
 	</ui:style>
-	<g:HTMLPanel>
+	<g:HTMLPanel width="500px">
 		<g:Hidden ui:field="ready" name="ready"/>
 		<div align="right" width="100%">
 			<g:TextBox ui:field="userName" /><g:Button ui:field="login">Sign in</g:Button>
@@ -25,14 +25,14 @@
 		<tr>
 		<td><span>Search for a country:</span></td>
 		<td><g:TextBox ui:field="country" /></td>
-		<td><g:Button styleName="{style.important}" ui:field="loadCities">Find cities</g:Button></td>
+		<td><g:Button ui:field="loadCities">Find cities</g:Button></td>
 		</tr>
 		
 		<g:Label ui:field="noCities" visible="false" styleName="{style.important}">No cities found</g:Label>
 		<tr ui:field="cityRow">
 		<td><span>Select a city:</span></td>
 		<td><g:ListBox ui:field="city" visibleItemCount="1" /></td>
-		<td><g:Button styleName="{style.important}" ui:field="loadWeather">Get weather</g:Button></td>
+		<td><g:Button ui:field="loadWeather">Get weather</g:Button></td>
 		</tr>
 		</table>
 		
