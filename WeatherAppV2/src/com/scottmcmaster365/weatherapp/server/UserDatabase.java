@@ -6,10 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import com.scottmcmaster365.weatherapp.shared.City;
 
-@Singleton
 public class UserDatabase {
 
 	private Connection conn;

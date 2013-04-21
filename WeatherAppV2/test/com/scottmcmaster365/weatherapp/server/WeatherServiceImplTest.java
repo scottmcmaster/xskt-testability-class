@@ -22,7 +22,7 @@ public class WeatherServiceImplTest {
 	public void setUp() throws SQLException, Exception {
 		globalWeatherService = EasyMock.createMock(GlobalWeatherService.class);
 		weatherService = new WeatherServiceImpl(globalWeatherService,
-				new UserDatabase(new DatabaseConnectionManager().getConnection()));
+				new UserDatabase(new InMemoryConnectionManager().getConnection()));
 	}
 	
 	@Test
