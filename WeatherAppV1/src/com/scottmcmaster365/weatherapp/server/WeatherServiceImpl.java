@@ -14,9 +14,10 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 @SuppressWarnings("serial")
 public class WeatherServiceImpl extends RemoteServiceServlet implements
 		WeatherService {
+	
+	private static final GlobalWeatherService service = new GlobalWeatherService();
 
 	public List<String> getCitiesForCountry(String countryName) {
-		GlobalWeatherService service = new GlobalWeatherService();
 		try {
 			if (countryName == null || countryName.isEmpty()) {
 				return new ArrayList<String>();
@@ -29,7 +30,6 @@ public class WeatherServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public Weather getWeather(String countryName, String cityName) {
-		GlobalWeatherService service = new GlobalWeatherService();
 		try {
 			return service.getWeatherForCity(countryName, cityName);
 		} catch (Exception e) {

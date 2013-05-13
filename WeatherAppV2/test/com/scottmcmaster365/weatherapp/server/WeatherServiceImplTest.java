@@ -88,6 +88,7 @@ public class WeatherServiceImplTest {
 			weatherService.getWeatherForUser("scott");
 		} catch (WeatherServiceException e) {
 			assertTrue(e.getCause() instanceof IOException);
+			EasyMock.verify(globalWeatherService);
 			return;
 		}
 		fail("Didn't find expected exception");
