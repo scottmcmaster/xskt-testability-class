@@ -1,7 +1,5 @@
 package com.scottmcmaster365.weatherapp.client;
 
-import java.util.List;
-
 import org.easymock.Capture;
 import org.easymock.EasyMock;
 import org.junit.Before;

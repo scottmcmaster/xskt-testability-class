@@ -15,4 +15,5 @@ public class DebugIds {
 	public static final String LOGIN = "Login";
 	public static final String USER_NAME = "UserName";
 	public static final String UNKNOWN_USER = "UnknownUser";
+	public static final String KNOWN_USER = "KnownUser";
 }

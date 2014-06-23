@@ -2,7 +2,9 @@ package com.scottmcmaster365.weatherapp.shared;
 
 import java.io.Serializable;
 
-public class Weather implements Serializable {
+import com.google.gwt.user.client.rpc.IsSerializable;
+
+public class Weather implements Serializable, IsSerializable {
 
 	private String cityName;
 	private String temperature;
@@ -10,7 +12,14 @@ public class Weather implements Serializable {
 	private String visibility;
 	private String pressure;
 	private String humidity;
+	private String lastCity;
 	
+	public String getLastCity() {
+		return lastCity;
+	}
+	public void setLastCity(String lastCity) {
+		this.lastCity = lastCity;
+	}
 	public String getCityName() {
 		return cityName;
 	}

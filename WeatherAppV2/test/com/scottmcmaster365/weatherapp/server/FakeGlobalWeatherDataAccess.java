@@ -9,6 +9,7 @@ public class FakeGlobalWeatherDataAccess implements GlobalWeatherDataAccess {
 	
 	@Override
 	public String getCitiesForCountryXml(String countryName) throws Exception {
+		//Thread.sleep(5000);
 		if ("china".equals(countryName.toLowerCase())) {
 			return CHINA_CITIES;
 		}

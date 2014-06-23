@@ -2,6 +2,7 @@ package com.scottmcmaster365.weatherapp.client;
 
 import java.util.List;
 
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.scottmcmaster365.weatherapp.client.WeatherView.WeatherViewEventHandler;
 import com.scottmcmaster365.weatherapp.shared.Weather;
@@ -19,6 +20,12 @@ public class WeatherHomePresenter implements WeatherViewEventHandler{
 		this.weatherService = weatherService;
 		this.view = view;
 		view.setEventHandler(this);
+		if (Cookies.getCookie("user") != null) {
+			this.view.setKnownUserVisible(true);
+			String userName = Cookies.getCookie("user");
+			this.view.setKnownUser(userName);
+			doUserWeather(userName);
+		}
 	}
 
 	@Override
@@ -85,7 +92,17 @@ public class WeatherHomePresenter implements WeatherViewEventHandler{
 	@Override
 	public void onLogin() {
 		view.setReady(false);
-		weatherService.getWeatherForUser(view.getUserName(),
+		doUserWeather(view.getUserName());		
+	}
+
+	@Override
+	public void onLogout() {
+		Cookies.removeCookie("user");
+		view.setKnownUserVisible(false);
+	}
+
+	private void doUserWeather(final String userName) {
+		weatherService.getWeatherForUser(userName,
 				new AsyncCallback<Weather>() {
 
 					@Override
@@ -99,11 +116,14 @@ public class WeatherHomePresenter implements WeatherViewEventHandler{
 						if (weather != null) {
 							fillWeather(weather);
 							view.setUnknownUserVisible(false);
+							view.setKnownUserVisible(true);
+							Cookies.setCookie("user", userName);
 						} else {
 							view.setUnknownUserVisible(true);
+							view.setKnownUserVisible(false);
 						}
 						view.setReady(true);
 					}
-				});		
+				});
 	}
 }

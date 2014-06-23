@@ -20,6 +20,7 @@ import com.google.gwt.user.client.ui.Widget;
 public class WeatherHome extends Composite implements WeatherView {
 
 	@UiField Button login;
+	@UiField Button logout;
 	@UiField TextBox userName;
 	@UiField TextBox country;
 	@UiField ListBox city;
@@ -36,6 +37,7 @@ public class WeatherHome extends Composite implements WeatherView {
 	@UiField Label noCities;
 	@UiField Label unknownUser;
 	@UiField Hidden ready;
+	@UiField Label knownUser;
 	
 	private WeatherViewEventHandler handler;
 	
@@ -61,6 +63,7 @@ public class WeatherHome extends Composite implements WeatherView {
 		login.ensureDebugId(DebugIds.LOGIN);
 		userName.ensureDebugId(DebugIds.USER_NAME);
 		unknownUser.ensureDebugId(DebugIds.UNKNOWN_USER);
+		knownUser.ensureDebugId(DebugIds.KNOWN_USER);
 		
 		UIObject.setVisible(cityRow, false);
 		UIObject.setVisible(weatherTable, false);
@@ -104,6 +107,11 @@ public class WeatherHome extends Composite implements WeatherView {
 		handler.onLogin();
 	}
 
+	@UiHandler("logout")
+	void onLogout(ClickEvent e) {
+		handler.onLogout();
+	}
+
 	@Override
 	public void setWeatherCity(String city) {
 		cityName.setText(city);
@@ -145,6 +153,11 @@ public class WeatherHome extends Composite implements WeatherView {
 	}
 	
 	@Override
+	public void setKnownUserVisible(boolean visible) {
+		knownUser.setVisible(visible);
+	}
+	
+	@Override
 	public void setCityRowVisible(boolean visible) {
 		UIObject.setVisible(cityRow, visible);
 	}
@@ -181,5 +194,10 @@ public class WeatherHome extends Composite implements WeatherView {
 		} else {
 			ready.setValue("busy");
 		}
+	}
+
+	@Override
+	public void setKnownUser(String username) {
+		knownUser.setText("Hello, " + username);
 	}
 }

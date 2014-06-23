@@ -6,6 +6,7 @@ public interface WeatherView {
 		void onLoadWeather();
 		void onLoadCities();
 		void onLogin();
+		void onLogout();
 	}
 	
 	void setEventHandler(WeatherViewEventHandler handler);
@@ -45,4 +46,8 @@ public interface WeatherView {
 	boolean getReady();
 	
 	void setReady(boolean ready);
+
+	void setKnownUserVisible(boolean visible);
+
+	void setKnownUser(String username);
 }

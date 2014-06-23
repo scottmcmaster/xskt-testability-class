@@ -17,8 +17,10 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.scottmcmaster365.weatherapp.shared.Weather;
 
+@Singleton
 public class GlobalWeatherServiceImpl implements GlobalWeatherService {
 
 	private final GlobalWeatherDataAccess dataAccess;

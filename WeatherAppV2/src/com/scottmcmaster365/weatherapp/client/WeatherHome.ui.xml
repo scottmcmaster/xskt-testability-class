@@ -16,9 +16,13 @@
 		<g:Hidden ui:field="ready" name="ready"/>
 		<div align="right" width="100%">
 			<g:TextBox ui:field="userName" /><g:Button ui:field="login">Sign in</g:Button>
+			<g:Button ui:field="logout">Sign out</g:Button>
 		</div>
 		<div align="right" width="100%">
 			<g:Label ui:field="unknownUser" visible="false" styleName="{style.error}">Unknown user</g:Label>
+		</div>
+		<div align="right" width="100%">
+			<g:Label ui:field="knownUser" visible="false" styleName="{style.important}"></g:Label>
 		</div>
 		<h1>World Weather</h1>
 		<table>

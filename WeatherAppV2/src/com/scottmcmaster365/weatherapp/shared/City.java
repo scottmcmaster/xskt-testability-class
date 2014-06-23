@@ -1,6 +1,10 @@
 package com.scottmcmaster365.weatherapp.shared;
 
-public class City {
+import java.io.Serializable;
+
+import com.google.gwt.user.client.rpc.IsSerializable;
+
+public class City implements Serializable, IsSerializable {
 
 	private String cityName;
 	private String countryName;

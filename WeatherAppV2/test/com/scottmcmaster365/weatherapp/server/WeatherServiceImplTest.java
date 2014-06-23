@@ -79,8 +79,6 @@ public class WeatherServiceImplTest {
 	
 	@Test
 	public void testGetWeatherForUser_exception() throws Exception {
-		Weather weather = new Weather();
-		weather.setCityName("beijing");
 		EasyMock.expect(globalWeatherService.getWeatherForCity("china", "beijing"))
 			.andThrow(new IOException());
 		EasyMock.replay(globalWeatherService);
